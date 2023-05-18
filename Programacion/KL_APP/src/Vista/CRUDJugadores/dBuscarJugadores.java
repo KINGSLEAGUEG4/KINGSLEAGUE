@@ -4,6 +4,7 @@ import Controlador.Main;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class dBuscarJugadores extends JDialog {
     private JPanel contentPane;
@@ -11,8 +12,8 @@ public class dBuscarJugadores extends JDialog {
     private JComboBox cbID;
     private JComboBox cbDNI;
     private JTextArea taCTJ;
-    private JTextArea taCJID;
     private JTextArea taCJDNI;
+    private JTextArea taCJID;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JPanel pTitulo;
@@ -115,11 +116,28 @@ public class dBuscarJugadores extends JDialog {
         System.exit(0);
     }
 
+    private void crearArrays() {
+        try {
+            ArrayList<String> idCBox = Main.crearIdJugadores();
+            idCBox.forEach(id ->cbID.addItem(id));
+        } catch (Exception exc) {
+            System.out.println("problemas");
+        }
+        try {
+            ArrayList<String> dniCBox = Main.crearDniJugadores();
+            dniCBox.forEach(dni ->cbDNI.addItem(dni));
+        } catch (Exception exc) {
+            System.out.println("problemas");
+        }
+    }
+
     private void inicializar() {
 
+        crearArrays();
+
         taCTJ.setEditable(false);
-        taCJDNI.setEditable(false);
         taCJID.setEditable(false);
+        taCJDNI.setEditable(false);
 
         pTodos.add(new JScrollPane(taCTJ));
         taCTJ.setRows(20);

@@ -113,6 +113,8 @@ public class Main {
     public static ArrayList<Integer> listaPosicion;
 
     private static ArrayList<Jugador> listaJugadores;
+    private static ArrayList<Jugador> listaIdJugadores;
+    private static ArrayList<Jugador> listaDniJugadores;
     private static int numJugador;
 
     private static int posicion;
@@ -671,6 +673,23 @@ public class Main {
         vEquipoJugadores.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vEquipoJugadores.pack();
         vEquipoJugadores.setVisible(true);
+    }
+
+    // COMBOBOX BUSCAR JUGADORES **************************************
+    public static ArrayList<String> crearIdJugadores() throws Exception {
+        listaIdJugadores = new ArrayList<>();
+        listaIdJugadores = tJugadores.buscarTodos();
+        ArrayList<String> idCBox = new ArrayList<>();
+        listaIdJugadores.forEach(id -> idCBox.add(new String(String.valueOf(id.getID()))));
+        return idCBox;
+    }
+
+    public static ArrayList<String> crearDniJugadores() throws Exception {
+        listaDniJugadores = new ArrayList<>();
+        listaDniJugadores = tJugadores.buscarTodos();
+        ArrayList<String> dniCBox = new ArrayList<>();
+        listaDniJugadores.forEach(dni -> dniCBox.add(new String(dni.getDNI())));
+        return dniCBox;
     }
 
     public static void datosSeleccionarJugadorEquipo(int numEquipo) throws Exception {
